@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Upload</title>
+</head>
+<body>
+    <h2>Data yang Telah Diupload</h2>
+    {% if data %}
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Gambar Utama</th>
+                <th>Gambar Tambahan</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+                <td>{{ row['name'] }}</td>
+                <td>{{ row['email'] }}</td>
+                <td>{{ row['tanggal'] }}</td>
+                <td>{{ row['waktu_pengambilan'] or '-' }}</td>
+                <td><a href="{{ url_for('uploaded_file', filename=row['gambar_utama']) }}">Lihat</a></td>
+                <td>
+                    {% for img in row['gambar_tambahan'].split(',') if img %}
+                        <a href="{{ url_for('uploaded_file', filename=img) }}">{{ img }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Belum ada data.</p>
+    {% endif %}
+    <a href="/form">Kembali ke Form</a>
+</body>
+</html>

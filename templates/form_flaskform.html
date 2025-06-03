@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Checklist</title>
+</head>
+<body>
+    <h2>Form Checklist Ojol</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            <label>Nama:</label> {{ form.name(size=32) }}
+        </div>
+        <div>
+            <label>Email:</label> {{ form.email(size=32) }}
+        </div>
+        <div>
+            <label>Tanggal:</label> {{ form.tanggal() }}
+        </div>
+        <div>
+            <label>Waktu Pengambilan:</label> {{ form.waktu_pengambilan() }}
+        </div>
+        <div>
+            <label>Gambar Utama:</label> {{ form.gambar_utama() }}
+        </div>
+        <div>
+            <label>Gambar Tambahan:</label> {{ form.gambar_tambahan() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+    <a href="/data">Lihat Data</a>
+</body>
+</html>
